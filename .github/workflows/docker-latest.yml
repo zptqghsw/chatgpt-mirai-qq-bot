@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'browser-version'
+      - 'refactor-v3'
 
 jobs:
   docker:
