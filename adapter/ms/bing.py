@@ -88,6 +88,7 @@ class BingAdapter(BotAdapter, DrawingAPI):
                                 parsed_content = f"{parsed_content}* {suggestion.get('text')}  \n"
 
                     parsed_content = parsed_content + remaining_conversations
+                    parsed_content = re.sub(r'\{".*":.*\}', '', parsed_content)
 
                     if parsed_content == remaining_conversations:  # No content
                         yield "Bing 已结束本次会话。继续发送消息将重新开启一个新会话。"
@@ -98,6 +99,7 @@ class BingAdapter(BotAdapter, DrawingAPI):
                     parsed_content = re.sub(r"Searching the web for:(.*)\n", "", response)
                     parsed_content = re.sub(r"```json(.*)```", "", parsed_content,flags=re.DOTALL)
                     parsed_content = re.sub(r"Generating answers for you...", "", parsed_content)
+                    parsed_content = re.sub(r'\{".*":.*\}', '', parsed_content)
                     if config.bing.show_references:
                         parsed_content = re.sub(r"\[(\d+)\]: ", r"\1: ", parsed_content)
                     else:
