@@ -33,7 +33,7 @@ class BardCookieAuth(AccountInfoBaseModel):
 
     async def check_alive(self) -> bool:
         response = await self._client.get(
-            "https://bard.google.com/?hl=en",
+            "https://gemini.google.com/?hl=en",
             timeout=30,
             follow_redirects=True,
         )
