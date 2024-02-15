@@ -27,7 +27,7 @@ class BardAdapter(Llm):
 
     async def get_at_token(self):
         response = await self.client.get(
-            "https://bard.google.com/?hl=en",
+            "https://gemini.google.com/?hl=en",
             timeout=30,
             follow_redirects=True,
         )
@@ -43,7 +43,7 @@ class BardAdapter(Llm):
         try:
             if not self.at:
                 await self.get_at_token()
-            url = "https://bard.google.com/_/BardChatUi/data/assistant.lamda.BardFrontendService/StreamGenerate"
+            url = "https://gemini.google.com/_/BardChatUi/data/assistant.lamda.BardFrontendService/StreamGenerate"
             # Goolge's RPC style: https://kovatch.medium.com/deciphering-google-batchexecute-74991e4e446c
             response = await self.client.post(
                 url,
